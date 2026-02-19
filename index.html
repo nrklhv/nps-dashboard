@@ -4,7 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dashboard NPS Detractores · Landlord · 2026-02-13 al 2026-02-19</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+
+// --- NPS Histórico 3 meses ---
+const months12 = [Feb 25,Mar 25,Apr 25,May 25,Jun 25,Jul 25,Ago 25,Sep 25,Oct 25,Nov 25,Dic 25,Ene 26,Feb 26];
+new Chart(document.getElementById('chartNps3m'), {
+  type: 'line',
+  data: {
+    labels: months12,
+    datasets: [
+      {
+        label: 'Common',
+        data: [0,-31.6,38.1,18.2,3,12,15.4,37.5,16.7,34.5,-13.6,-9.1,-27.3],
+        borderColor: '#6366f1',
+        backgroundColor: 'rgba(99,102,241,0.08)',
+        tension: 0.35,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        fill: false,
+        spanGaps: true
+      },
+      {
+        label: 'KAM',
+        data: [-100,-100,-16.7,23.1,-42.9,40,null,-100,-100,-42.9,100,-33.3,0],
+        borderColor: '#f59e0b',
+        backgroundColor: 'rgba(245,158,11,0.08)',
+        tension: 0.35,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        borderDash: [5,3],
+        fill: false,
+        spanGaps: true
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw !== null ? ctx.raw + ' pts' : 'sin datos'}`
+        }
+      }
+    },
+    scales: {
+      y: {
+        min: -110, max: 110,
+        ticks: { font: { size: 10 }, callback: v => v + 'p' },
+        grid: { color: 'rgba(0,0,0,0.05)' },
+        title: { display: true, text: 'NPS Score', font: { size: 10 } }
+      },
+      x: { ticks: { font: { size: 10 }, maxRotation: 45 }, grid: { display: false } }
+    }
+  }
+});
+
+// --- NPS Histórico 6 meses ---
+new Chart(document.getElementById('chartNps6m'), {
+  type: 'line',
+  data: {
+    labels: months12,
+    datasets: [
+      {
+        label: 'Common',
+        data: [12.5,43.8,18.2,23.7,12.5,17.6,39.2,-8.6,20.5,10.8,6.6,9.8,18.8],
+        borderColor: '#10b981',
+        backgroundColor: 'rgba(16,185,129,0.08)',
+        tension: 0.35,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        fill: false,
+        spanGaps: true
+      },
+      {
+        label: 'KAM',
+        data: [100,-16.7,22.2,-30.8,-9.1,9.5,-45.5,-13.6,-16.7,-66.7,-47.8,-71.4,-75],
+        borderColor: '#ef4444',
+        backgroundColor: 'rgba(239,68,68,0.08)',
+        tension: 0.35,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        borderDash: [5,3],
+        fill: false,
+        spanGaps: true
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw !== null ? ctx.raw + ' pts' : 'sin datos'}`
+        }
+      }
+    },
+    scales: {
+      y: {
+        min: -110, max: 110,
+        ticks: { font: { size: 10 }, callback: v => v + 'p' },
+        grid: { color: 'rgba(0,0,0,0.05)' },
+        title: { display: true, text: 'NPS Score', font: { size: 10 } }
+      },
+      x: { ticks: { font: { size: 10 }, maxRotation: 45 }, grid: { display: false } }
+    }
+  }
+});
+
+</script>
 <style>
 :root{--primary:#6366f1;--bg:#f8fafc;--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -142,7 +253,20 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
     <div class="chart-card"><h3>🔍 Causas Raíz</h3><div class="chart-wrap"><canvas id="chartRoot"></canvas></div></div>
   </div>
 
-  <div class="section-title">Tabla de Detractores</div>
+  
+  <!-- NPS HISTÓRICO -->
+  <div class="section-title">📈 Evolución NPS — Últimos 12 Meses</div>
+  <div class="charts-row charts-2" style="margin-bottom:28px">
+    <div class="chart-card">
+      <h3>📊 NPS Landlord 3 Meses</h3>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartNps3m"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>📊 NPS Landlord 6 Meses</h3>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartNps6m"></canvas></div>
+    </div>
+  </div>
+<div class="section-title">Tabla de Detractores</div>
   <div class="filters">
     <label>Filtrar:</label>
     <select id="filterCountry" onchange="applyFilters()"><option value="">Todos los países</option><option value="Colombia">Colombia</option><option value="Chile">Chile</option></select>
@@ -296,7 +420,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>carolina.camacho@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="46252734292a2f28276825272b27252e29062e29332b6825292b">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>24 meses</td></tr>
           <tr><td>Propiedades</td><td>2</td></tr>
           <tr><td>CSAT histórico</td><td>⭐ 0.17 (27 encuestas)</td></tr>
@@ -339,7 +463,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>t5property@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="196d2c696b76697c6b6d605971766c74377a7674">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>4 meses</td></tr>
           <tr><td>Propiedades</td><td>1</td></tr>
           <tr><td>CSAT histórico</td><td>–</td></tr>
@@ -382,7 +506,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>t2property@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cebafcbebca1beabbcbab78ea6a1bba3e0ada1a3">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>20 meses</td></tr>
           <tr><td>Propiedades</td><td>4</td></tr>
           <tr><td>CSAT histórico</td><td>–</td></tr>
@@ -425,7 +549,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>t2property@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="077335777568776275737e476f68726a2964686a">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>28 meses</td></tr>
           <tr><td>Propiedades</td><td>1</td></tr>
           <tr><td>CSAT histórico</td><td>⭐ 0.17 (6 encuestas)</td></tr>
@@ -468,7 +592,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>t4property@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e490d094968b948196909da48c8b9189ca878b89">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>5 meses</td></tr>
           <tr><td>Propiedades</td><td>1</td></tr>
           <tr><td>CSAT histórico</td><td>–</td></tr>
@@ -482,7 +606,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
         <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>La atención al cliente</blockquote></div>
         <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Administración CO</p></div>
         <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Mala experiencia de onboarding — atención deficiente en primeros 3 meses</p></div>
-        <div class="kustomer-box"><h4>🤝 Insight Kustomer</h4><p>Solo 1 conversación en Kustomer (enero 2026): aprobación de presupuesto para reparaciones en propiedad ID 161405. El caso fue cerrado por Houm y se envió CSAT pero la cliente no respondió. Cliente creada en sept 2025, activa hace 5 meses. El hecho de que la única interacción registrada sea sobre reparaciones — y que aun así sea detractora con NPS 0 — sugiere que la experiencia de incorporación fue deficiente o que hay interacciones no registradas. Email: cordobaangelica66@gmail.com.</p></div>
+        <div class="kustomer-box"><h4>🤝 Insight Kustomer</h4><p>Solo 1 conversación en Kustomer (enero 2026): aprobación de presupuesto para reparaciones en propiedad ID 161405. El caso fue cerrado por Houm y se envió CSAT pero la cliente no respondió. Cliente creada en sept 2025, activa hace 5 meses. El hecho de que la única interacción registrada sea sobre reparaciones — y que aun así sea detractora con NPS 0 — sugiere que la experiencia de incorporación fue deficiente o que hay interacciones no registradas. Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="482b273a2c272a2929262f2d24212b297e7e082f25292124662b2725">[email&#160;protected]</a>.</p></div>
         <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Cliente nueva con NPS 0 a solo 3 meses. Solo 1 conversación registrada sobre aprobación de presupuesto de reparaciones. El hecho de que ya sea detractora tan pronto indica fallo en la gestión inicial. Acción: (1) Contactar para entender qué falló en la experiencia inicial. (2) Revisar proceso de onboarding Colombia. (3) Asignar ejecutivo de seguimiento.</p></div>
       </div>
     </div>
@@ -511,7 +635,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">KAM</span></td></tr>
-          <tr><td>Ejecutivo</td><td>laura.cuellar@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f39f92868192dd9086969f9f9281b39b9c869edd909c9e">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>40 meses</td></tr>
           <tr><td>Propiedades</td><td>2</td></tr>
           <tr><td>CSAT histórico</td><td>–</td></tr>
@@ -526,7 +650,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
         <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">KAM → Reclamos → Administración</p></div>
         <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Ausencia de comunicación telefónica humana + disputa sobre liquidación de garantía</p></div>
         <div class="kustomer-box"><h4>🤝 Insight Kustomer</h4><p>68 conversaciones históricas desde 2022. CSAT promedio 0/1 en 15 encuestas — el más bajo de todos los detractores. Ha respondido 3 veces encuestas NPS, siempre con score bajo. Última conversación (dic 2025): caso complejo de liquidación de garantía tras salida de arrendatario. Houm presentó dos opciones: (A) transferir garantía completa para que cliente pague gasto común, o (B) descontar gasto común ($189.620) de la garantía y transferir el resto. El cliente no respondió la opción elegida, caso cerrado sin resolución clara. Reclamo explícito en NPS: 'No robots', exige contacto telefónico humano. Propiedades: 84080 y 18403.</p></div>
-        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Cliente KAM longeva (40 meses) con CSAT 0/1 en 15 encuestas — el peor historial de satisfacción entre los detractores. La ejecutiva KAM laura.cuellar@houm.com debe: (1) Llamar personalmente esta semana. (2) Resolver la disputa sobre liquidación de garantía del ex-arrendatario (desacuerdo en cotización de reparaciones, gasto común pendiente $189.620). (3) Garantizar que no haya más interacciones automatizadas con esta cliente.</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Cliente KAM longeva (40 meses) con CSAT 0/1 en 15 encuestas — el peor historial de satisfacción entre los detractores. La ejecutiva KAM <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48885919685ca87918188888596a48c8b9189ca878b89">[email&#160;protected]</a> debe: (1) Llamar personalmente esta semana. (2) Resolver la disputa sobre liquidación de garantía del ex-arrendatario (desacuerdo en cotización de reparaciones, gasto común pendiente $189.620). (3) Garantizar que no haya más interacciones automatizadas con esta cliente.</p></div>
       </div>
     </div>
   </div>
@@ -554,7 +678,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>Recolocación Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>t1property@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="13672263617c637661676a537b7c667e3d707c7e">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>42 meses</td></tr>
           <tr><td>Propiedades</td><td>2</td></tr>
           <tr><td>CSAT histórico</td><td>⭐ 1 (9 encuestas)</td></tr>
@@ -597,7 +721,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
           <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>Recolocación Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>t1property@houm.com</td></tr>
+          <tr><td>Ejecutivo</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b7f3a7b79647b6e797f724b63647e6625686466">[email&#160;protected]</a></td></tr>
           <tr><td>Antigüedad</td><td>35 meses</td></tr>
           <tr><td>Propiedades</td><td>1</td></tr>
           <tr><td>CSAT histórico</td><td>–</td></tr>
@@ -624,7 +748,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const palette=['#6366f1','#8b5cf6','#ec4899','#f97316','#eab308','#22c55e','#06b6d4'];
 
 function initCharts(){
@@ -657,29 +781,4 @@ function applyFilters(){
 
 
 const HASH='1ui3vc8';
-let attempts=0,lockedUntil=0;
-function djb2(str){let h=5381;for(let i=0;i<str.length;i++){h=((h<<5)+h)+str.charCodeAt(i);h=h&h;}return(h>>>0).toString(36);}
-function checkPw(){
-  const now=Date.now();
-  if(now<lockedUntil){showError('Bloqueado. Espera '+ Math.ceil((lockedUntil-now)/1000)+' seg.');return;}
-  const val=document.getElementById('pwInput').value;
-  if(!val)return;
-  if(djb2(val)===HASH){
-    document.getElementById('loginScreen').style.display='none';
-    sessionStorage.setItem('nps_auth',HASH);
-    initCharts();
-  }else{
-    attempts++;
-    document.getElementById('pwInput').value='';
-    if(attempts>=5){lockedUntil=Date.now()+30000;attempts=0;showError('Demasiados intentos. Bloqueado 30s.');}
-    else{showError('Contraseña incorrecta.');document.getElementById('loginAttempts').textContent=(5-attempts)+' intento(s) restante(s)';}
-  }
-}
-function showError(msg){const el=document.getElementById('loginError');el.textContent=msg;el.style.display='block';el.style.animation='none';el.offsetHeight;el.style.animation='shake .3s';}
-function togglePwVisibility(){const i=document.getElementById('pwInput');i.type=i.type==='password'?'text':'password';}
-window.addEventListener('DOMContentLoaded',()=>{
-  if(sessionStorage.getItem('nps_auth')===HASH){document.getElementById('loginScreen').style.display='none';initCharts();}
-});
-</script>
-</body>
-</html>
+let attempts=0,lockedUnti
