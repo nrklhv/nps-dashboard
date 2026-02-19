@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dashboard NPS Detractores · Landlord · 2026-02-19</title>
+<title>Dashboard NPS Detractores · Landlord · 2026-02-13 al 2026-02-19</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root{--primary:#6366f1;--bg:#f8fafc;--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
@@ -111,8 +111,8 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <h1>📊 Dashboard NPS Detractores — Landlord</h1>
   <p>Análisis de encuestas con score 0–6 · landlord_3_months &amp; landlord_6_months</p>
   <div class="header-meta">
-    <div class="header-badge">📅 Período: 2026-02-19</div>
-    <div class="header-badge">🕐 Generado: 19-02-2026, 10:00:00 a. m.</div>
+    <div class="header-badge">📅 Período: 2026-02-13 al 2026-02-19</div>
+    <div class="header-badge">🕐 Generado: 19-02-2026, 9:00:00 p. m.</div>
     <div class="header-badge">🔴 Crítica: 0–2 &nbsp;|&nbsp; 🟠 Alta: 3–4 &nbsp;|&nbsp; 🟡 Media: 5–6</div>
     <div class="header-badge">🔒 Protegido con contraseña</div>
   </div>
@@ -121,12 +121,12 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
 <div class="container">
   <div class="section-title">Resumen Ejecutivo</div>
   <div class="kpis">
-    <div class="kpi"><div class="kpi-value">5</div><div class="kpi-label">Total Detractores</div></div>
-    <div class="kpi"><div class="kpi-value" style="color:#ef4444">3.0</div><div class="kpi-label">Score Promedio</div></div>
-    <div class="kpi"><div class="kpi-value" style="color:#ef4444">2</div><div class="kpi-label">Críticos (0–2)</div></div>
-    <div class="kpi"><div class="kpi-value" style="color:#f97316">2</div><div class="kpi-label">Alta Severidad (3–4)</div></div>
-    <div class="kpi"><div class="kpi-value" style="color:#eab308">1</div><div class="kpi-label">Media Severidad (5–6)</div></div>
-    <div class="kpi"><div class="kpi-value" style="color:#ef4444">2</div><div class="kpi-label">Casos Abiertos</div></div>
+    <div class="kpi"><div class="kpi-value">8</div><div class="kpi-label">Total Detractores</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#ef4444">1.8</div><div class="kpi-label">Score Promedio</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#ef4444">6</div><div class="kpi-label">Críticos (0–2)</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#f97316">0</div><div class="kpi-label">Alta Severidad (3–4)</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#eab308">2</div><div class="kpi-label">Media Severidad (5–6)</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#ef4444">1</div><div class="kpi-label">Casos Abiertos</div></div>
   </div>
 
   <div class="charts-row charts-2">
@@ -142,7 +142,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <div class="section-title">Tabla de Detractores</div>
   <div class="filters">
     <label>Filtrar:</label>
-    <select id="filterCountry" onchange="applyFilters()"><option value="">Todos los países</option><option value="Chile">Chile</option><option value="Colombia">Colombia</option><option value="México">México</option></select>
+    <select id="filterCountry" onchange="applyFilters()"><option value="">Todos los países</option><option value="Colombia">Colombia</option><option value="Chile">Chile</option></select>
     <select id="filterSeverity" onchange="applyFilters()">
       <option value="">Toda severidad</option>
       <option value="Crítica">🔴 Crítica</option>
@@ -155,7 +155,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
       <option value="Alliance">Alliance</option><option value="Common">Common</option>
     </select>
     <input type="text" id="filterName" placeholder="Buscar nombre…" oninput="applyFilters()" style="min-width:180px">
-    <span id="filterCount" style="font-size:12px;color:var(--muted);margin-left:auto">5 casos</span>
+    <span id="filterCount" style="font-size:12px;color:var(--muted);margin-left:auto">8 casos</span>
   </div>
 
   <div class="table-card">
@@ -165,69 +165,108 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
       <th>Clasificación</th><th>Segmento</th><th>Antigüedad</th>
       <th>Props.</th><th>Causa Raíz</th><th>Estado</th>
     </tr></thead><tbody id="tableBody">
-<tr data-country="Chile" data-severity="Crítica" data-class="VIP" onclick="toggleCase(0)" style="cursor:pointer">
-  <td><strong>Carlos Mendoza</strong></td>
-  <td>Chile</td>
-  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">1</span></td>
+<tr data-country="Colombia" data-severity="Crítica" data-class="Common" onclick="toggleCase(0)" style="cursor:pointer">
+  <td><strong>Juan Carlos Quintero Avila</strong></td>
+  <td>Colombia</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">0</span></td>
   <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
   <td style="font-size:12px">1er Contrato Admin</td>
-  <td><span style="background:#8b5cf6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">VIP</span></td>
-  <td style="text-align:center">14m</td>
-  <td style="text-align:center">3</td>
-  <td style="font-size:12px">Problema sin resolver</td>
+  <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
+  <td style="text-align:center">24m</td>
+  <td style="text-align:center">2</td>
+  <td style="font-size:12px">Pago de renta no procesado correctamente + falta de trazabilidad</td>
   <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td>
 </tr>
 
-<tr data-country="Chile" data-severity="Alta" data-class="KAM" onclick="toggleCase(1)" style="cursor:pointer">
-  <td><strong>Ana Rodríguez</strong></td>
+<tr data-country="Chile" data-severity="Crítica" data-class="Common" onclick="toggleCase(1)" style="cursor:pointer">
+  <td><strong>Tatiana Rodriguez</strong></td>
   <td>Chile</td>
-  <td style="text-align:center"><span class="score-pill" style="background:#ffedd5;color:#1f2937;font-weight:700">3</span></td>
-  <td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span></td>
-  <td style="font-size:12px">Recolocación Admin</td>
-  <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">KAM</span></td>
-  <td style="text-align:center">22m</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">0</span></td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
+  <td style="font-size:12px">1er Contrato Admin</td>
+  <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
+  <td style="text-align:center">4m</td>
   <td style="text-align:center">1</td>
-  <td style="font-size:12px">Falta de comunicación</td>
-  <td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Pospuesto</span></td>
+  <td style="font-size:12px">Descuentos no informados + intento de término de mandato</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
 </tr>
 
-<tr data-country="Colombia" data-severity="Crítica" data-class="Common" onclick="toggleCase(2)" style="cursor:pointer">
-  <td><strong>Diego Herrera</strong></td>
-  <td>Colombia</td>
-  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">2</span></td>
+<tr data-country="Chile" data-severity="Crítica" data-class="Common" onclick="toggleCase(2)" style="cursor:pointer">
+  <td><strong>William Zúñiga</strong></td>
+  <td>Chile</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">0</span></td>
   <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
-  <td style="font-size:12px">Corretaje</td>
+  <td style="font-size:12px">1er Contrato Admin</td>
+  <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
+  <td style="text-align:center">20m</td>
+  <td style="text-align:center">4</td>
+  <td style="font-size:12px">Inconsistencia en mensajes y fechas de pago</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
+</tr>
+
+<tr data-country="Colombia" data-severity="Crítica" data-class="Common" onclick="toggleCase(3)" style="cursor:pointer">
+  <td><strong>David Barreto</strong></td>
+  <td>Colombia</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">0</span></td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
+  <td style="font-size:12px">1er Contrato Admin</td>
+  <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
+  <td style="text-align:center">28m</td>
+  <td style="text-align:center">1</td>
+  <td style="font-size:12px">Atención al cliente deficiente</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
+</tr>
+
+<tr data-country="Colombia" data-severity="Crítica" data-class="Common" onclick="toggleCase(4)" style="cursor:pointer">
+  <td><strong>Angelica Cordoba</strong></td>
+  <td>Colombia</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">0</span></td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
+  <td style="font-size:12px">1er Contrato Admin</td>
   <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
   <td style="text-align:center">5m</td>
   <td style="text-align:center">1</td>
-  <td style="font-size:12px">Expectativas no cumplidas</td>
+  <td style="font-size:12px">Atención al cliente - nuevo cliente (3 meses)</td>
   <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
 </tr>
 
-<tr data-country="México" data-severity="Media" data-class="Alliance" onclick="toggleCase(3)" style="cursor:pointer">
-  <td><strong>Valentina Cruz</strong></td>
-  <td>México</td>
-  <td style="text-align:center"><span class="score-pill" style="background:#fef9c3;color:#1f2937;font-weight:700">5</span></td>
-  <td><span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span></td>
-  <td style="font-size:12px">1er Contrato Admin</td>
-  <td><span style="background:#06b6d4;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Alliance</span></td>
-  <td style="text-align:center">9m</td>
-  <td style="text-align:center">2</td>
-  <td style="font-size:12px">Tiempo de respuesta lento</td>
-  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
-</tr>
-
-<tr data-country="Chile" data-severity="Alta" data-class="Common" onclick="toggleCase(4)" style="cursor:pointer">
-  <td><strong>Miguel Ángel Fuentes</strong></td>
+<tr data-country="Chile" data-severity="Crítica" data-class="KAM" onclick="toggleCase(5)" style="cursor:pointer">
+  <td><strong>Macarena Henríquez</strong></td>
   <td>Chile</td>
-  <td style="text-align:center"><span class="score-pill" style="background:#ffedd5;color:#1f2937;font-weight:700">4</span></td>
-  <td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span></td>
-  <td style="font-size:12px">Sin Contrato</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">2</span></td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
+  <td style="font-size:12px">1er Contrato Admin</td>
+  <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">KAM</span></td>
+  <td style="text-align:center">40m</td>
+  <td style="text-align:center">2</td>
+  <td style="font-size:12px">Falta de comunicación telefónica humana</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
+</tr>
+
+<tr data-country="Chile" data-severity="Media" data-class="Common" onclick="toggleCase(6)" style="cursor:pointer">
+  <td><strong>Christian Sfeir</strong></td>
+  <td>Chile</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fef9c3;color:#1f2937;font-weight:700">6</span></td>
+  <td><span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span></td>
+  <td style="font-size:12px">Recolocación Admin</td>
   <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
-  <td style="text-align:center">31m</td>
+  <td style="text-align:center">42m</td>
+  <td style="text-align:center">2</td>
+  <td style="font-size:12px">Caída en calidad de servicio + nuevo portal más lento</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
+</tr>
+
+<tr data-country="Chile" data-severity="Media" data-class="Common" onclick="toggleCase(7)" style="cursor:pointer">
+  <td><strong>Jaime</strong></td>
+  <td>Chile</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fef9c3;color:#1f2937;font-weight:700">6</span></td>
+  <td><span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span></td>
+  <td style="font-size:12px">Recolocación Admin</td>
+  <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
+  <td style="text-align:center">35m</td>
   <td style="text-align:center">1</td>
-  <td style="font-size:12px">Transferencias excesivas</td>
-  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td>
+  <td style="font-size:12px">Disconformidad con cláusula de 6 meses de no pago</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
 </tr></tbody></table>
   </div>
 
@@ -236,12 +275,12 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <div class="case-header" onclick="toggleCase(0)">
     <div class="case-title">
       <span class="case-num">#1</span>
-      <strong>Carlos Mendoza</strong>
-      <span style="color:#6b7280;font-size:13px">Chile · +56912345678</span>
+      <strong>Juan Carlos Quintero Avila</strong>
+      <span style="color:#6b7280;font-size:13px">Colombia · +573213727693</span>
     </div>
     <div class="case-meta">
       <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
-      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 1</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 0</span>
       <span class="chevron" id="chevron-0">▼</span>
     </div>
   </div>
@@ -250,25 +289,25 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
       <div class="info-table">
         <h4>📋 Ficha del Cliente</h4>
         <table>
-          <tr><td>País</td><td>Chile</td></tr>
-          <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
+          <tr><td>País</td><td>Colombia</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
-          <tr><td>Segmento</td><td><span style="background:#8b5cf6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">VIP</span></td></tr>
-          <tr><td>Ejecutivo</td><td>maria.gomez@houm.com</td></tr>
-          <tr><td>Antigüedad</td><td>14 meses</td></tr>
-          <tr><td>Propiedades</td><td>3</td></tr>
-          <tr><td>CSAT histórico</td><td>⭐ 2.8 (4 encuestas)</td></tr>
-          <tr><td>Tickets abiertos</td><td>2</td></tr>
-          <tr><td>Encuestas previas</td><td>2 (Recurrente)</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
+          <tr><td>Ejecutivo</td><td>carolina.camacho@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>24 meses</td></tr>
+          <tr><td>Propiedades</td><td>2</td></tr>
+          <tr><td>CSAT histórico</td><td>⭐ 0.17 (27 encuestas)</td></tr>
+          <tr><td>Tickets abiertos</td><td>1</td></tr>
+          <tr><td>Encuestas previas</td><td>5 (Recurrente)</td></tr>
           <tr><td>Estado</td><td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td></tr>
-          <tr><td>Agente principal</td><td>Pedro Soto</td></tr>
+          <tr><td>Agente principal</td><td>Agente asignado ID 695fd9f1</td></tr>
         </table>
       </div>
       <div class="case-analysis">
-        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Llevo semanas esperando que arreglen el problema y nadie me da respuesta concreta. Muy decepcionante.</blockquote></div>
-        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Arriendos → Administración → Resolución</p></div>
-        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Problema sin resolver</p></div>
-        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Asignar gestor dedicado para cuentas VIP con más de 2 propiedades y escalar si el ticket supera 72h.</p></div>
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Trazabilidad, comunicación entre la empresa y verificación de documentos</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Administración → Resolución</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Pago de renta no procesado correctamente + falta de trazabilidad</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Cliente con 82 conversaciones históricas y 1 caso abierto URGENTE (pago renta feb). Nota interna dice 'es un abandono, salidads no toma contacto'. Asignar owner inmediato y escalar pago pendiente.</p></div>
       </div>
     </div>
   </div>
@@ -278,12 +317,12 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <div class="case-header" onclick="toggleCase(1)">
     <div class="case-title">
       <span class="case-num">#2</span>
-      <strong>Ana Rodríguez</strong>
-      <span style="color:#6b7280;font-size:13px">Chile · +56987654321</span>
+      <strong>Tatiana Rodriguez</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +56920000848</span>
     </div>
     <div class="case-meta">
-      <span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span>
-      <span class="score-pill" style="background:#ffedd5;color:#1f2937">NPS 3</span>
+      <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 0</span>
       <span class="chevron" id="chevron-1">▼</span>
     </div>
   </div>
@@ -293,24 +332,24 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
         <h4>📋 Ficha del Cliente</h4>
         <table>
           <tr><td>País</td><td>Chile</td></tr>
-          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
-          <tr><td>Clasificación</td><td>Recolocación Admin</td></tr>
-          <tr><td>Segmento</td><td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">KAM</span></td></tr>
-          <tr><td>Ejecutivo</td><td>luis.martinez@houm.com</td></tr>
-          <tr><td>Antigüedad</td><td>22 meses</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
+          <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
+          <tr><td>Ejecutivo</td><td>t5property@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>4 meses</td></tr>
           <tr><td>Propiedades</td><td>1</td></tr>
-          <tr><td>CSAT histórico</td><td>⭐ 3.5 (6 encuestas)</td></tr>
-          <tr><td>Tickets abiertos</td><td>1</td></tr>
+          <tr><td>CSAT histórico</td><td>–</td></tr>
+          <tr><td>Tickets abiertos</td><td>0</td></tr>
           <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
-          <tr><td>Estado</td><td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Pospuesto</span></td></tr>
-          <tr><td>Agente principal</td><td>Laura Torres</td></tr>
+          <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
+          <tr><td>Agente principal</td><td>Esteban Aldana</td></tr>
         </table>
       </div>
       <div class="case-analysis">
-        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>La comunicación es muy deficiente. Me entero de los problemas por el arrendatario, no por Houm.</blockquote></div>
-        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">KAM → Administración</p></div>
-        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Falta de comunicación</p></div>
-        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Implementar resumen semanal automático por WhatsApp para propietarios KAM.</p></div>
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Todo</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Reclamos → Administración</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Descuentos no informados + intento de término de mandato</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Propietaria amenazó con terminar contrato. Ejecutivo logró retenerla pero dejó claro que no renovará. Sentimiento muy negativo (-0.99). Requiere seguimiento proactivo antes del vencimiento del contrato.</p></div>
       </div>
     </div>
   </div>
@@ -320,12 +359,12 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <div class="case-header" onclick="toggleCase(2)">
     <div class="case-title">
       <span class="case-num">#3</span>
-      <strong>Diego Herrera</strong>
-      <span style="color:#6b7280;font-size:13px">Colombia · +57312345678</span>
+      <strong>William Zúñiga</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +56951100704</span>
     </div>
     <div class="case-meta">
       <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
-      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 2</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 0</span>
       <span class="chevron" id="chevron-2">▼</span>
     </div>
   </div>
@@ -334,25 +373,25 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
       <div class="info-table">
         <h4>📋 Ficha del Cliente</h4>
         <table>
-          <tr><td>País</td><td>Colombia</td></tr>
-          <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
-          <tr><td>Clasificación</td><td>Corretaje</td></tr>
+          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
+          <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>ana.reyes@houm.com</td></tr>
-          <tr><td>Antigüedad</td><td>5 meses</td></tr>
-          <tr><td>Propiedades</td><td>1</td></tr>
+          <tr><td>Ejecutivo</td><td>t2property@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>20 meses</td></tr>
+          <tr><td>Propiedades</td><td>4</td></tr>
           <tr><td>CSAT histórico</td><td>–</td></tr>
           <tr><td>Tickets abiertos</td><td>0</td></tr>
-          <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
+          <tr><td>Encuestas previas</td><td>5 (Recurrente)</td></tr>
           <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
-          <tr><td>Agente principal</td><td>Camila Vargas</td></tr>
+          <tr><td>Agente principal</td><td>Agente Gastos Comunes</td></tr>
         </table>
       </div>
       <div class="case-analysis">
-        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>El proceso duró 3 meses más de lo prometido. Perdí mucho dinero.</blockquote></div>
-        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Arriendos</p></div>
-        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Expectativas no cumplidas</p></div>
-        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Revisar promesas de tiempo en onboarding y establecer plazos realistas desde el inicio.</p></div>
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>La claridad de las respuestas, la consistencia de los mensajes y fechas de pago</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Administración → Gastos Comunes</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Inconsistencia en mensajes y fechas de pago</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Propietario recurrente con 5 encuestas completadas y 20 conversaciones. Problema de claridad en comunicaciones de pagos. Revisar historial de descuentos aplicados y unificar comunicación.</p></div>
       </div>
     </div>
   </div>
@@ -362,12 +401,12 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <div class="case-header" onclick="toggleCase(3)">
     <div class="case-title">
       <span class="case-num">#4</span>
-      <strong>Valentina Cruz</strong>
-      <span style="color:#6b7280;font-size:13px">México · +52555123456</span>
+      <strong>David Barreto</strong>
+      <span style="color:#6b7280;font-size:13px">Colombia · +573138241810</span>
     </div>
     <div class="case-meta">
-      <span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span>
-      <span class="score-pill" style="background:#fef9c3;color:#1f2937">NPS 5</span>
+      <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 0</span>
       <span class="chevron" id="chevron-3">▼</span>
     </div>
   </div>
@@ -376,25 +415,25 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
       <div class="info-table">
         <h4>📋 Ficha del Cliente</h4>
         <table>
-          <tr><td>País</td><td>México</td></tr>
+          <tr><td>País</td><td>Colombia</td></tr>
           <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
           <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
-          <tr><td>Segmento</td><td><span style="background:#06b6d4;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Alliance</span></td></tr>
-          <tr><td>Ejecutivo</td><td>jose.lopez@houm.com</td></tr>
-          <tr><td>Antigüedad</td><td>9 meses</td></tr>
-          <tr><td>Propiedades</td><td>2</td></tr>
-          <tr><td>CSAT histórico</td><td>⭐ 4.1 (3 encuestas)</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
+          <tr><td>Ejecutivo</td><td>t2property@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>28 meses</td></tr>
+          <tr><td>Propiedades</td><td>1</td></tr>
+          <tr><td>CSAT histórico</td><td>⭐ 0.17 (6 encuestas)</td></tr>
           <tr><td>Tickets abiertos</td><td>0</td></tr>
           <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
           <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
-          <tr><td>Agente principal</td><td>Roberto Díaz</td></tr>
+          <tr><td>Agente principal</td><td>Sin asignar actualmente</td></tr>
         </table>
       </div>
       <div class="case-analysis">
-        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>El servicio es bueno pero los tiempos de respuesta podrían mejorar bastante.</blockquote></div>
-        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Administración</p></div>
-        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Tiempo de respuesta lento</p></div>
-        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Reducir SLA de primera respuesta de 24h a 8h para cuentas Alliance.</p></div>
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>La atención al cliente</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Arriendos → Administración</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Atención al cliente deficiente</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>34 conversaciones históricas. Último mensaje entrante sin respuesta de Houm (llamada perdida/whatsapp sin responder). CSAT bajo (0.17). Requiere contacto proactivo.</p></div>
       </div>
     </div>
   </div>
@@ -404,12 +443,12 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
   <div class="case-header" onclick="toggleCase(4)">
     <div class="case-title">
       <span class="case-num">#5</span>
-      <strong>Miguel Ángel Fuentes</strong>
-      <span style="color:#6b7280;font-size:13px">Chile · +56922334455</span>
+      <strong>Angelica Cordoba</strong>
+      <span style="color:#6b7280;font-size:13px">Colombia · +573188038480</span>
     </div>
     <div class="case-meta">
-      <span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span>
-      <span class="score-pill" style="background:#ffedd5;color:#1f2937">NPS 4</span>
+      <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 0</span>
       <span class="chevron" id="chevron-4">▼</span>
     </div>
   </div>
@@ -418,25 +457,151 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
       <div class="info-table">
         <h4>📋 Ficha del Cliente</h4>
         <table>
-          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>País</td><td>Colombia</td></tr>
           <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
-          <tr><td>Clasificación</td><td>Sin Contrato</td></tr>
+          <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
           <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
-          <tr><td>Ejecutivo</td><td>–</td></tr>
-          <tr><td>Antigüedad</td><td>31 meses</td></tr>
+          <tr><td>Ejecutivo</td><td>t4property@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>5 meses</td></tr>
           <tr><td>Propiedades</td><td>1</td></tr>
-          <tr><td>CSAT histórico</td><td>⭐ 2.1 (8 encuestas)</td></tr>
-          <tr><td>Tickets abiertos</td><td>3</td></tr>
+          <tr><td>CSAT histórico</td><td>–</td></tr>
+          <tr><td>Tickets abiertos</td><td>0</td></tr>
+          <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
+          <tr><td>Agente principal</td><td>Agente Administración CO</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>La atención al cliente</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Administración</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Atención al cliente - nuevo cliente (3 meses)</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Cliente nueva con solo 1 conversación sobre aprobación de presupuesto de reparaciones. Caso cerrado pero NPS 0 a los 3 meses indica mal onboarding. Contactar para entender experiencia inicial.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card" id="case-5">
+  <div class="case-header" onclick="toggleCase(5)">
+    <div class="case-title">
+      <span class="case-num">#6</span>
+      <strong>Macarena Henríquez</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +56995681508</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 2</span>
+      <span class="chevron" id="chevron-5">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-5" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
+          <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">KAM</span></td></tr>
+          <tr><td>Ejecutivo</td><td>laura.cuellar@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>40 meses</td></tr>
+          <tr><td>Propiedades</td><td>2</td></tr>
+          <tr><td>CSAT histórico</td><td>–</td></tr>
+          <tr><td>Tickets abiertos</td><td>0</td></tr>
           <tr><td>Encuestas previas</td><td>3 (Recurrente)</td></tr>
-          <tr><td>Estado</td><td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td></tr>
+          <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
+          <tr><td>Agente principal</td><td>Laura Cuellar (KAM)</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Tener vía de comunicación telefónica. No robots!</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">KAM → Reclamos → Administración</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Falta de comunicación telefónica humana</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Propietaria KAM con 68 conversaciones y CSAT 0/1 promedio. Reclamo reciente sobre garantía y liquidación con inquilino. Requiere contacto telefónico directo de ejecutiva KAM laura.cuellar@houm.com URGENTE.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card" id="case-6">
+  <div class="case-header" onclick="toggleCase(6)">
+    <div class="case-title">
+      <span class="case-num">#7</span>
+      <strong>Christian Sfeir</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +56998332516</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span>
+      <span class="score-pill" style="background:#fef9c3;color:#1f2937">NPS 6</span>
+      <span class="chevron" id="chevron-6">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-6" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
+          <tr><td>Clasificación</td><td>Recolocación Admin</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
+          <tr><td>Ejecutivo</td><td>t1property@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>42 meses</td></tr>
+          <tr><td>Propiedades</td><td>2</td></tr>
+          <tr><td>CSAT histórico</td><td>⭐ 1 (9 encuestas)</td></tr>
+          <tr><td>Tickets abiertos</td><td>0</td></tr>
+          <tr><td>Encuestas previas</td><td>2 (Recurrente)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
+          <tr><td>Agente principal</td><td>Agente Célula 2</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Ha bajado mucho la calidad en este tiempo. Información de los candidatos poco detallada y largos tiempos para resolver problemas. Además el nuevo canal de comunicación por el portal hace todo más lento</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Administración → Cambio de Datos</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Caída en calidad de servicio + nuevo portal más lento</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Cliente longevo (42 meses) con 34 conversaciones. Problema recurrente con correo de acceso sin resolver. Feedback específico sobre el portal: lo percibe más lento. Escalar feedback a producto.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card" id="case-7">
+  <div class="case-header" onclick="toggleCase(7)">
+    <div class="case-title">
+      <span class="case-num">#8</span>
+      <strong>Jaime</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +34600948553</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span>
+      <span class="score-pill" style="background:#fef9c3;color:#1f2937">NPS 6</span>
+      <span class="chevron" id="chevron-7">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-7" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
+          <tr><td>Clasificación</td><td>Recolocación Admin</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
+          <tr><td>Ejecutivo</td><td>t1property@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>35 meses</td></tr>
+          <tr><td>Propiedades</td><td>1</td></tr>
+          <tr><td>CSAT histórico</td><td>–</td></tr>
+          <tr><td>Tickets abiertos</td><td>0</td></tr>
+          <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
           <tr><td>Agente principal</td><td>Sin asignar</td></tr>
         </table>
       </div>
       <div class="case-analysis">
-        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Ya es la tercera vez que completo esta encuesta y los problemas siguen sin resolverse.</blockquote></div>
-        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Arriendos → Resolución → Calidad</p></div>
-        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Transferencias excesivas</p></div>
-        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Revisar el caso urgente. Cliente recurrente con 3 encuestas negativas. Asignar owner único.</p></div>
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Bajar comisión, no hace falta 6 meses de no pago si el departamento se desocupa antes de 2 meses</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Voz (llamada perdida)</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Disconformidad con cláusula de 6 meses de no pago</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Solo 2 conversaciones antiguas (2023). Sin contacto reciente. Feedback sobre política comercial específica: cláusula de 6 meses. Escalar a equipo comercial para revisión de condiciones.</p></div>
       </div>
     </div>
   </div>
@@ -444,7 +609,7 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
 </div>
 
 <div class="footer">
-  Generado por Claude · 19-02-2026, 10:00:00 a. m.
+  Generado por Claude · 19-02-2026, 9:00:00 p. m.
   <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
 </div>
 
@@ -452,11 +617,11 @@ blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:
 const palette=['#6366f1','#8b5cf6','#ec4899','#f97316','#eab308','#22c55e','#06b6d4'];
 
 function initCharts(){
-  new Chart(document.getElementById('chartScores'),{type:'bar',data:{labels:["Score 0","Score 1","Score 2","Score 3","Score 4","Score 5","Score 6"],datasets:[{data:[0,1,1,1,1,1,0],backgroundColor:'#ef4444',borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
-  new Chart(document.getElementById('chartCountry'),{type:'doughnut',data:{labels:["Chile","Colombia","México"],datasets:[{data:[3,1,1],backgroundColor:palette}]},options:{responsive:true,maintainAspectRatio:false}});
-  new Chart(document.getElementById('chartClass'),{type:'pie',data:{labels:["1er Contrato Admin","Recolocación Admin","Corretaje","Sin Contrato"],datasets:[{data:[2,1,1,1],backgroundColor:palette}]},options:{responsive:true,maintainAspectRatio:false}});
-  new Chart(document.getElementById('chartSurvey'),{type:'doughnut',data:{labels:["3 months","6 months"],datasets:[{data:[3,2],backgroundColor:['#6366f1','#a78bfa']}]},options:{responsive:true,maintainAspectRatio:false}});
-  new Chart(document.getElementById('chartRoot'),{type:'bar',data:{labels:["Problema sin resolver","Falta de comunicación","Expectativas no cumplidas","Tiempo de respuesta lento","Transferencias excesivas"],datasets:[{data:[1,1,1,1,1],backgroundColor:'#6366f1',borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{stepSize:1}}}}});
+  new Chart(document.getElementById('chartScores'),{type:'bar',data:{labels:["Score 0","Score 1","Score 2","Score 3","Score 4","Score 5","Score 6"],datasets:[{data:[5,0,1,0,0,0,2],backgroundColor:'#ef4444',borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+  new Chart(document.getElementById('chartCountry'),{type:'doughnut',data:{labels:["Colombia","Chile"],datasets:[{data:[3,5],backgroundColor:palette}]},options:{responsive:true,maintainAspectRatio:false}});
+  new Chart(document.getElementById('chartClass'),{type:'pie',data:{labels:["1er Contrato Admin","Recolocación Admin"],datasets:[{data:[6,2],backgroundColor:palette}]},options:{responsive:true,maintainAspectRatio:false}});
+  new Chart(document.getElementById('chartSurvey'),{type:'doughnut',data:{labels:["6 months","3 months"],datasets:[{data:[6,2],backgroundColor:['#6366f1','#a78bfa']}]},options:{responsive:true,maintainAspectRatio:false}});
+  new Chart(document.getElementById('chartRoot'),{type:'bar',data:{labels:["Pago de renta no procesado correctamente + falta de trazabilidad","Descuentos no informados + intento de término de mandato","Inconsistencia en mensajes y fechas de pago","Atención al cliente deficiente","Atención al cliente - nuevo cliente (3 meses)","Falta de comunicación telefónica humana","Caída en calidad de servicio + nuevo portal más lento","Disconformidad con cláusula de 6 meses de no pago"],datasets:[{data:[1,1,1,1,1,1,1,1],backgroundColor:'#6366f1',borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{stepSize:1}}}}});
 }
 
 function toggleCase(i){
