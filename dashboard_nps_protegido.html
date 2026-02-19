@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dashboard NPS Detractores · Landlord · 2026-02-19</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--primary:#6366f1;--bg:#f8fafc;--card:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text)}
+/* Login */
+#loginScreen{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#1e1b4b,#4f46e5 50%,#7c3aed);display:flex;align-items:center;justify-content:center}
+.login-card{background:#fff;border-radius:20px;padding:48px 40px;width:100%;max-width:380px;box-shadow:0 25px 60px rgba(0,0,0,.35);text-align:center}
+.login-logo{font-size:44px;margin-bottom:10px}
+.login-card h2{font-size:20px;font-weight:700;color:#1e293b;margin-bottom:4px}
+.login-card p{font-size:13px;color:#64748b;margin-bottom:28px}
+.login-input-wrap{position:relative;margin-bottom:14px}
+.login-input-wrap input{width:100%;padding:13px 44px 13px 16px;border:2px solid #e2e8f0;border-radius:10px;font-size:15px;outline:none;transition:border .2s;letter-spacing:.08em}
+.login-input-wrap input:focus{border-color:#6366f1}
+.toggle-pw{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;user-select:none;color:#94a3b8}
+.login-btn{width:100%;padding:13px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s;margin-bottom:4px}
+.login-btn:hover{opacity:.9}
+.login-error{color:#ef4444;font-size:13px;margin-top:10px;display:none}
+.login-attempts{font-size:11px;color:#94a3b8;margin-top:6px;min-height:16px}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+/* Header */
+.header{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;padding:28px 32px}
+.header h1{font-size:24px;font-weight:700}
+.header p{font-size:13px;opacity:.85;margin-top:4px}
+.header-meta{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
+.header-badge{background:rgba(255,255,255,.15);border-radius:8px;padding:6px 14px;font-size:12px}
+/* Layout */
+.container{max-width:1400px;margin:0 auto;padding:24px 20px}
+.section-title{font-size:14px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:28px}
+.kpi{background:var(--card);border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.kpi-value{font-size:32px;font-weight:800;color:var(--primary);line-height:1}
+.kpi-label{font-size:12px;color:var(--muted);margin-top:4px}
+/* Charts */
+.charts-row{display:grid;gap:16px;margin-bottom:20px}
+.charts-2{grid-template-columns:1fr 1fr}
+.charts-3{grid-template-columns:1fr 1fr 1fr}
+.chart-card{background:var(--card);border-radius:12px;padding:20px;border:1px solid var(--border)}
+.chart-card h3{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:14px}
+.chart-wrap{position:relative;height:200px}
+/* Filters */
+.filters{background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--border);margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.filters label{font-size:12px;font-weight:600;color:var(--muted)}
+.filters select,.filters input{padding:6px 10px;border-radius:8px;border:1px solid var(--border);font-size:13px;color:var(--text);background:var(--bg)}
+/* Table */
+.table-card{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:28px}
+table{width:100%;border-collapse:collapse}
+thead th{background:#f1f5f9;padding:10px 12px;text-align:left;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border)}
+tbody td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+tbody tr:hover{background:#f8faff}
+tbody tr:last-child td{border-bottom:none}
+.score-pill{display:inline-block;padding:2px 10px;border-radius:12px;font-weight:700;font-size:13px}
+/* Case Cards */
+.case-card{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:10px;overflow:hidden;transition:box-shadow .2s}
+.case-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.case-header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;cursor:pointer;gap:12px;flex-wrap:wrap}
+.case-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.case-num{background:var(--primary);color:#fff;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.case-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chevron{color:var(--muted);transition:transform .2s;font-size:12px}
+.case-body{padding:20px;border-top:1px solid var(--border);background:#fafbfc}
+.case-grid{display:grid;grid-template-columns:300px 1fr;gap:20px}
+.info-table h4,.case-analysis h4{font-size:13px;color:var(--muted);margin-bottom:8px}
+.info-table table{width:100%;font-size:12px}
+.info-table td{padding:5px 8px;border-bottom:1px solid #f1f5f9}
+.info-table td:first-child{font-weight:600;color:var(--muted);white-space:nowrap}
+.comment-box,.teams-box,.root-cause-box,.recommendation-box{margin-bottom:14px}
+blockquote{border-left:4px solid #e2e8f0;padding:10px 14px;font-size:13px;color:var(--muted);font-style:italic;background:#fff;border-radius:0 8px 8px 0}
+.flow{font-size:13px;font-weight:500;color:#4f46e5}
+.root-cause-box{background:#fef2f2;border-radius:8px;padding:12px 14px;border-left:4px solid #ef4444}
+.root-cause-box p{font-size:13px;color:#7f1d1d;font-weight:500}
+.recommendation-box{background:#f0fdf4;border-radius:8px;padding:12px 14px;border-left:4px solid #22c55e}
+.recommendation-box p{font-size:13px;color:#14532d}
+/* Footer */
+.footer{text-align:center;padding:24px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
+.print-btn{background:var(--primary);color:#fff;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;margin-left:12px}
+/* Empty */
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty .emoji{font-size:48px;margin-bottom:12px}
+/* Responsive */
+@media(max-width:768px){.charts-2,.charts-3{grid-template-columns:1fr}.case-grid{grid-template-columns:1fr}}
+@media print{#loginScreen,.filters,.print-btn{display:none!important}.case-body{display:block!important}.chart-card{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">📊</div>
+    <h2>Dashboard NPS Landlord</h2>
+    <p>Ingresa la contraseña para acceder</p>
+    <div class="login-input-wrap">
+      <input type="password" id="pwInput" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPw()" autofocus>
+      <span class="toggle-pw" onclick="togglePwVisibility()">👁</span>
+    </div>
+    <button class="login-btn" onclick="checkPw()">Acceder →</button>
+    <div class="login-error" id="loginError">Contraseña incorrecta.</div>
+    <div class="login-attempts" id="loginAttempts"></div>
+  </div>
+</div>
+
+<div class="header">
+  <h1>📊 Dashboard NPS Detractores — Landlord</h1>
+  <p>Análisis de encuestas con score 0–6 · landlord_3_months &amp; landlord_6_months</p>
+  <div class="header-meta">
+    <div class="header-badge">📅 Período: 2026-02-19</div>
+    <div class="header-badge">🕐 Generado: 19-02-2026, 10:00:00 a. m.</div>
+    <div class="header-badge">🔴 Crítica: 0–2 &nbsp;|&nbsp; 🟠 Alta: 3–4 &nbsp;|&nbsp; 🟡 Media: 5–6</div>
+    <div class="header-badge">🔒 Protegido con contraseña</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-title">Resumen Ejecutivo</div>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-value">5</div><div class="kpi-label">Total Detractores</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#ef4444">3.0</div><div class="kpi-label">Score Promedio</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#ef4444">2</div><div class="kpi-label">Críticos (0–2)</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#f97316">2</div><div class="kpi-label">Alta Severidad (3–4)</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#eab308">1</div><div class="kpi-label">Media Severidad (5–6)</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:#ef4444">2</div><div class="kpi-label">Casos Abiertos</div></div>
+  </div>
+
+  <div class="charts-row charts-2">
+    <div class="chart-card"><h3>📊 Distribución de Scores</h3><div class="chart-wrap"><canvas id="chartScores"></canvas></div></div>
+    <div class="chart-card"><h3>🌎 Por País</h3><div class="chart-wrap"><canvas id="chartCountry"></canvas></div></div>
+  </div>
+  <div class="charts-row charts-3" style="margin-bottom:28px">
+    <div class="chart-card"><h3>📁 Clasificación</h3><div class="chart-wrap"><canvas id="chartClass"></canvas></div></div>
+    <div class="chart-card"><h3>📋 Tipo de Encuesta</h3><div class="chart-wrap"><canvas id="chartSurvey"></canvas></div></div>
+    <div class="chart-card"><h3>🔍 Causas Raíz</h3><div class="chart-wrap"><canvas id="chartRoot"></canvas></div></div>
+  </div>
+
+  <div class="section-title">Tabla de Detractores</div>
+  <div class="filters">
+    <label>Filtrar:</label>
+    <select id="filterCountry" onchange="applyFilters()"><option value="">Todos los países</option><option value="Chile">Chile</option><option value="Colombia">Colombia</option><option value="México">México</option></select>
+    <select id="filterSeverity" onchange="applyFilters()">
+      <option value="">Toda severidad</option>
+      <option value="Crítica">🔴 Crítica</option>
+      <option value="Alta">🟠 Alta</option>
+      <option value="Media">🟡 Media</option>
+    </select>
+    <select id="filterClass" onchange="applyFilters()">
+      <option value="">Todo segmento</option>
+      <option value="VIP">VIP</option><option value="KAM">KAM</option>
+      <option value="Alliance">Alliance</option><option value="Common">Common</option>
+    </select>
+    <input type="text" id="filterName" placeholder="Buscar nombre…" oninput="applyFilters()" style="min-width:180px">
+    <span id="filterCount" style="font-size:12px;color:var(--muted);margin-left:auto">5 casos</span>
+  </div>
+
+  <div class="table-card">
+    
+    <table><thead><tr>
+      <th>Nombre</th><th>País</th><th>NPS</th><th>Severidad</th>
+      <th>Clasificación</th><th>Segmento</th><th>Antigüedad</th>
+      <th>Props.</th><th>Causa Raíz</th><th>Estado</th>
+    </tr></thead><tbody id="tableBody">
+<tr data-country="Chile" data-severity="Crítica" data-class="VIP" onclick="toggleCase(0)" style="cursor:pointer">
+  <td><strong>Carlos Mendoza</strong></td>
+  <td>Chile</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">1</span></td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
+  <td style="font-size:12px">1er Contrato Admin</td>
+  <td><span style="background:#8b5cf6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">VIP</span></td>
+  <td style="text-align:center">14m</td>
+  <td style="text-align:center">3</td>
+  <td style="font-size:12px">Problema sin resolver</td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td>
+</tr>
+
+<tr data-country="Chile" data-severity="Alta" data-class="KAM" onclick="toggleCase(1)" style="cursor:pointer">
+  <td><strong>Ana Rodríguez</strong></td>
+  <td>Chile</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#ffedd5;color:#1f2937;font-weight:700">3</span></td>
+  <td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span></td>
+  <td style="font-size:12px">Recolocación Admin</td>
+  <td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">KAM</span></td>
+  <td style="text-align:center">22m</td>
+  <td style="text-align:center">1</td>
+  <td style="font-size:12px">Falta de comunicación</td>
+  <td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Pospuesto</span></td>
+</tr>
+
+<tr data-country="Colombia" data-severity="Crítica" data-class="Common" onclick="toggleCase(2)" style="cursor:pointer">
+  <td><strong>Diego Herrera</strong></td>
+  <td>Colombia</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fee2e2;color:#1f2937;font-weight:700">2</span></td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span></td>
+  <td style="font-size:12px">Corretaje</td>
+  <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
+  <td style="text-align:center">5m</td>
+  <td style="text-align:center">1</td>
+  <td style="font-size:12px">Expectativas no cumplidas</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
+</tr>
+
+<tr data-country="México" data-severity="Media" data-class="Alliance" onclick="toggleCase(3)" style="cursor:pointer">
+  <td><strong>Valentina Cruz</strong></td>
+  <td>México</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#fef9c3;color:#1f2937;font-weight:700">5</span></td>
+  <td><span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span></td>
+  <td style="font-size:12px">1er Contrato Admin</td>
+  <td><span style="background:#06b6d4;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Alliance</span></td>
+  <td style="text-align:center">9m</td>
+  <td style="text-align:center">2</td>
+  <td style="font-size:12px">Tiempo de respuesta lento</td>
+  <td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td>
+</tr>
+
+<tr data-country="Chile" data-severity="Alta" data-class="Common" onclick="toggleCase(4)" style="cursor:pointer">
+  <td><strong>Miguel Ángel Fuentes</strong></td>
+  <td>Chile</td>
+  <td style="text-align:center"><span class="score-pill" style="background:#ffedd5;color:#1f2937;font-weight:700">4</span></td>
+  <td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span></td>
+  <td style="font-size:12px">Sin Contrato</td>
+  <td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td>
+  <td style="text-align:center">31m</td>
+  <td style="text-align:center">1</td>
+  <td style="font-size:12px">Transferencias excesivas</td>
+  <td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td>
+</tr></tbody></table>
+  </div>
+
+  <div class="section-title">Análisis Individual</div><div class="cases-section">
+<div class="case-card" id="case-0">
+  <div class="case-header" onclick="toggleCase(0)">
+    <div class="case-title">
+      <span class="case-num">#1</span>
+      <strong>Carlos Mendoza</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +56912345678</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 1</span>
+      <span class="chevron" id="chevron-0">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-0" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
+          <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#8b5cf6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">VIP</span></td></tr>
+          <tr><td>Ejecutivo</td><td>maria.gomez@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>14 meses</td></tr>
+          <tr><td>Propiedades</td><td>3</td></tr>
+          <tr><td>CSAT histórico</td><td>⭐ 2.8 (4 encuestas)</td></tr>
+          <tr><td>Tickets abiertos</td><td>2</td></tr>
+          <tr><td>Encuestas previas</td><td>2 (Recurrente)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td></tr>
+          <tr><td>Agente principal</td><td>Pedro Soto</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Llevo semanas esperando que arreglen el problema y nadie me da respuesta concreta. Muy decepcionante.</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Arriendos → Administración → Resolución</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Problema sin resolver</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Asignar gestor dedicado para cuentas VIP con más de 2 propiedades y escalar si el ticket supera 72h.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card" id="case-1">
+  <div class="case-header" onclick="toggleCase(1)">
+    <div class="case-title">
+      <span class="case-num">#2</span>
+      <strong>Ana Rodríguez</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +56987654321</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span>
+      <span class="score-pill" style="background:#ffedd5;color:#1f2937">NPS 3</span>
+      <span class="chevron" id="chevron-1">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-1" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
+          <tr><td>Clasificación</td><td>Recolocación Admin</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#3b82f6;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">KAM</span></td></tr>
+          <tr><td>Ejecutivo</td><td>luis.martinez@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>22 meses</td></tr>
+          <tr><td>Propiedades</td><td>1</td></tr>
+          <tr><td>CSAT histórico</td><td>⭐ 3.5 (6 encuestas)</td></tr>
+          <tr><td>Tickets abiertos</td><td>1</td></tr>
+          <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Pospuesto</span></td></tr>
+          <tr><td>Agente principal</td><td>Laura Torres</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>La comunicación es muy deficiente. Me entero de los problemas por el arrendatario, no por Houm.</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">KAM → Administración</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Falta de comunicación</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Implementar resumen semanal automático por WhatsApp para propietarios KAM.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card" id="case-2">
+  <div class="case-header" onclick="toggleCase(2)">
+    <div class="case-title">
+      <span class="case-num">#3</span>
+      <strong>Diego Herrera</strong>
+      <span style="color:#6b7280;font-size:13px">Colombia · +57312345678</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Crítica</span>
+      <span class="score-pill" style="background:#fee2e2;color:#1f2937">NPS 2</span>
+      <span class="chevron" id="chevron-2">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-2" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>Colombia</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
+          <tr><td>Clasificación</td><td>Corretaje</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
+          <tr><td>Ejecutivo</td><td>ana.reyes@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>5 meses</td></tr>
+          <tr><td>Propiedades</td><td>1</td></tr>
+          <tr><td>CSAT histórico</td><td>–</td></tr>
+          <tr><td>Tickets abiertos</td><td>0</td></tr>
+          <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
+          <tr><td>Agente principal</td><td>Camila Vargas</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>El proceso duró 3 meses más de lo prometido. Perdí mucho dinero.</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Arriendos</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Expectativas no cumplidas</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Revisar promesas de tiempo en onboarding y establecer plazos realistas desde el inicio.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card" id="case-3">
+  <div class="case-header" onclick="toggleCase(3)">
+    <div class="case-title">
+      <span class="case-num">#4</span>
+      <strong>Valentina Cruz</strong>
+      <span style="color:#6b7280;font-size:13px">México · +52555123456</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#eab308;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Media</span>
+      <span class="score-pill" style="background:#fef9c3;color:#1f2937">NPS 5</span>
+      <span class="chevron" id="chevron-3">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-3" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>México</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_6_months</td></tr>
+          <tr><td>Clasificación</td><td>1er Contrato Admin</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#06b6d4;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Alliance</span></td></tr>
+          <tr><td>Ejecutivo</td><td>jose.lopez@houm.com</td></tr>
+          <tr><td>Antigüedad</td><td>9 meses</td></tr>
+          <tr><td>Propiedades</td><td>2</td></tr>
+          <tr><td>CSAT histórico</td><td>⭐ 4.1 (3 encuestas)</td></tr>
+          <tr><td>Tickets abiertos</td><td>0</td></tr>
+          <tr><td>Encuestas previas</td><td>1 (Primera vez)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Cerrado</span></td></tr>
+          <tr><td>Agente principal</td><td>Roberto Díaz</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>El servicio es bueno pero los tiempos de respuesta podrían mejorar bastante.</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Administración</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Tiempo de respuesta lento</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Reducir SLA de primera respuesta de 24h a 8h para cuentas Alliance.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card" id="case-4">
+  <div class="case-header" onclick="toggleCase(4)">
+    <div class="case-title">
+      <span class="case-num">#5</span>
+      <strong>Miguel Ángel Fuentes</strong>
+      <span style="color:#6b7280;font-size:13px">Chile · +56922334455</span>
+    </div>
+    <div class="case-meta">
+      <span style="background:#f97316;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">Alta</span>
+      <span class="score-pill" style="background:#ffedd5;color:#1f2937">NPS 4</span>
+      <span class="chevron" id="chevron-4">▼</span>
+    </div>
+  </div>
+  <div class="case-body" id="body-4" style="display:none">
+    <div class="case-grid">
+      <div class="info-table">
+        <h4>📋 Ficha del Cliente</h4>
+        <table>
+          <tr><td>País</td><td>Chile</td></tr>
+          <tr><td>Tipo encuesta</td><td>landlord_3_months</td></tr>
+          <tr><td>Clasificación</td><td>Sin Contrato</td></tr>
+          <tr><td>Segmento</td><td><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Common</span></td></tr>
+          <tr><td>Ejecutivo</td><td>–</td></tr>
+          <tr><td>Antigüedad</td><td>31 meses</td></tr>
+          <tr><td>Propiedades</td><td>1</td></tr>
+          <tr><td>CSAT histórico</td><td>⭐ 2.1 (8 encuestas)</td></tr>
+          <tr><td>Tickets abiertos</td><td>3</td></tr>
+          <tr><td>Encuestas previas</td><td>3 (Recurrente)</td></tr>
+          <tr><td>Estado</td><td><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px">Abierto</span></td></tr>
+          <tr><td>Agente principal</td><td>Sin asignar</td></tr>
+        </table>
+      </div>
+      <div class="case-analysis">
+        <div class="comment-box"><h4>💬 Comentario NPS</h4><blockquote>Ya es la tercera vez que completo esta encuesta y los problemas siguen sin resolverse.</blockquote></div>
+        <div class="teams-box"><h4>🔄 Flujo de Equipos</h4><p class="flow">Arriendos → Resolución → Calidad</p></div>
+        <div class="root-cause-box"><h4>🔍 Causa Raíz</h4><p>Transferencias excesivas</p></div>
+        <div class="recommendation-box"><h4>✅ Recomendación</h4><p>Revisar el caso urgente. Cliente recurrente con 3 encuestas negativas. Asignar owner único.</p></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+</div>
+
+<div class="footer">
+  Generado por Claude · 19-02-2026, 10:00:00 a. m.
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+</div>
+
+<script>
+const palette=['#6366f1','#8b5cf6','#ec4899','#f97316','#eab308','#22c55e','#06b6d4'];
+
+function initCharts(){
+  new Chart(document.getElementById('chartScores'),{type:'bar',data:{labels:["Score 0","Score 1","Score 2","Score 3","Score 4","Score 5","Score 6"],datasets:[{data:[0,1,1,1,1,1,0],backgroundColor:'#ef4444',borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+  new Chart(document.getElementById('chartCountry'),{type:'doughnut',data:{labels:["Chile","Colombia","México"],datasets:[{data:[3,1,1],backgroundColor:palette}]},options:{responsive:true,maintainAspectRatio:false}});
+  new Chart(document.getElementById('chartClass'),{type:'pie',data:{labels:["1er Contrato Admin","Recolocación Admin","Corretaje","Sin Contrato"],datasets:[{data:[2,1,1,1],backgroundColor:palette}]},options:{responsive:true,maintainAspectRatio:false}});
+  new Chart(document.getElementById('chartSurvey'),{type:'doughnut',data:{labels:["3 months","6 months"],datasets:[{data:[3,2],backgroundColor:['#6366f1','#a78bfa']}]},options:{responsive:true,maintainAspectRatio:false}});
+  new Chart(document.getElementById('chartRoot'),{type:'bar',data:{labels:["Problema sin resolver","Falta de comunicación","Expectativas no cumplidas","Tiempo de respuesta lento","Transferencias excesivas"],datasets:[{data:[1,1,1,1,1],backgroundColor:'#6366f1',borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{stepSize:1}}}}});
+}
+
+function toggleCase(i){
+  const body=document.getElementById('body-'+i),ch=document.getElementById('chevron-'+i);
+  if(body.style.display==='none'){body.style.display='block';ch.style.transform='rotate(180deg)';document.getElementById('case-'+i).scrollIntoView({behavior:'smooth',block:'nearest'});}
+  else{body.style.display='none';ch.style.transform='';}
+}
+
+function applyFilters(){
+  const country=document.getElementById('filterCountry').value.toLowerCase();
+  const severity=document.getElementById('filterSeverity').value.toLowerCase();
+  const cls=document.getElementById('filterClass').value.toLowerCase();
+  const name=document.getElementById('filterName').value.toLowerCase();
+  const rows=document.querySelectorAll('#tableBody tr');
+  let v=0;
+  rows.forEach(r=>{
+    const show=(!country||r.dataset.country?.toLowerCase()===country)&&(!severity||r.dataset.severity?.toLowerCase()===severity)&&(!cls||r.dataset.class?.toLowerCase()===cls)&&(!name||r.cells[0]?.textContent.toLowerCase().includes(name));
+    r.style.display=show?'':'none';if(show)v++;
+  });
+  document.getElementById('filterCount').textContent=v+' casos';
+}
+
+
+const HASH='1ui3vc8';
+let attempts=0,lockedUntil=0;
+function djb2(str){let h=5381;for(let i=0;i<str.length;i++){h=((h<<5)+h)+str.charCodeAt(i);h=h&h;}return(h>>>0).toString(36);}
+function checkPw(){
+  const now=Date.now();
+  if(now<lockedUntil){showError('Bloqueado. Espera '+ Math.ceil((lockedUntil-now)/1000)+' seg.');return;}
+  const val=document.getElementById('pwInput').value;
+  if(!val)return;
+  if(djb2(val)===HASH){
+    document.getElementById('loginScreen').style.display='none';
+    sessionStorage.setItem('nps_auth',HASH);
+    initCharts();
+  }else{
+    attempts++;
+    document.getElementById('pwInput').value='';
+    if(attempts>=5){lockedUntil=Date.now()+30000;attempts=0;showError('Demasiados intentos. Bloqueado 30s.');}
+    else{showError('Contraseña incorrecta.');document.getElementById('loginAttempts').textContent=(5-attempts)+' intento(s) restante(s)';}
+  }
+}
+function showError(msg){const el=document.getElementById('loginError');el.textContent=msg;el.style.display='block';el.style.animation='none';el.offsetHeight;el.style.animation='shake .3s';}
+function togglePwVisibility(){const i=document.getElementById('pwInput');i.type=i.type==='password'?'text':'password';}
+window.addEventListener('DOMContentLoaded',()=>{
+  if(sessionStorage.getItem('nps_auth')===HASH){document.getElementById('loginScreen').style.display='none';initCharts();}
+});
+</script>
+</body>
+</html>
